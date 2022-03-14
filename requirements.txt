@@ -3,3 +3,4 @@ plotly.express
 pandas
 numpy
 pickle-mixin
+sklearn
