@@ -2,9 +2,12 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
+import os.path
 
 
 st.set_page_config(layout='wide')
+
+
 def country_cutoff(column, cutoff_num):
     categories_map = dict()
     for i in range(len(column)):
@@ -36,12 +39,12 @@ def clean_education(edu):
 
 # Let's clean the country's name
 def clean_country_name(name):
-    if name =='Iran, Islamic Republic of...':
+    if name == 'Iran, Islamic Republic of...':
         return 'Iran'
     elif name == 'United Kingdom of Great Britain and Northern Ireland':
         return 'UK'
     elif name == 'Russian Federation':
-        return 'Ruassia'
+        return 'Russia'
     elif name == 'United States of America':
         return 'USA'
     else:
@@ -55,7 +58,6 @@ def age_replace(age, m):
         return m
     else:
         return age
-
 
 
 # Function to load the dataframe
@@ -98,7 +100,17 @@ def load_file():
     return df
 
 
-df = load_file()
+#df = pd.read_csv('clean_survey_results_public.csv')
+#st.write(df)
+if os.path.exists('survey_results_public.csv'):
+    df = load_file()
+
+    #st.write('file exist')
+else:
+    #st.write('file does not exist')
+    df = pd.read_csv('clean_survey_results_public.csv')
+   
+
 
 def show_explore_page():
     st.title("Explore Software Engineer Salaries")
