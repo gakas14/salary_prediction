@@ -109,7 +109,7 @@ if os.path.exists('survey_results_public.csv'):
 else:
     #st.write('file does not exist')
     df = pd.read_csv('clean_survey_results_public.csv')
-   
+
 
 
 def show_explore_page():
